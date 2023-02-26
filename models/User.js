@@ -1,43 +1,48 @@
-//Create a virtual called friendCount that retrieves the length of the user's friends array field on query.
-const mongoose = require('mongoose');
+  const mongoose = require('mongoose');
 
-const userSchema = new mongoose.Schema({
-  name: String,
-  friends: [String]
-});
-
-userSchema.virtual('friendCount').get(function() {
-  return this.friends.length;
-});
-
-const User = mongoose.model('User', userSchema);
-
-//query for user's friends
-User.findOne({ name: 'John Doe' })
-  .exec((err, user) => {
-    if (err) {
-      console.error(err);
-    } else {
-      console.log(user.friendCount); // outputs the length of the user's friends array
+  const Schema = mongoose.Schema;
+  
+  const UserSchema = new Schema(
+    {
+      username: {
+        type: String,
+        unique: true,
+        required: true,
+        trim: true
+      },
+      email: {
+        type: String,
+        required: true,
+        unique: true,
+        match: [/.+@.+\..+/, 'Please enter a valid email address']
+      },
+       //Array of _id values referencing the Thought model
+      thoughts: [
+        {
+          type: Schema.Types.ObjectId,
+          ref: 'Thought'
+        }
+      ],
+      //Array of _id values referencing the User model (self-reference)
+      friends: [
+        {
+          type: Schema.Types.ObjectId,
+          ref: 'User'
+        }
+      ]
+    },
+    {
+      toJSON: {
+        virtuals: true
+      },
+      id: false
     }
+  );
+  //query for user's friends
+  UserSchema.virtual('friendCount').get(function() {
+    return this.friends.length;
   });
-
-
-//username
-    //String
-    //Unique
-    //Required
-    //Trimmed
-
-//email
-    //String
-    //Unique
-    //Required
-    //Trimmed
-    //Must match a valid email address (look into Mongoose's matching validation)
-
-//thoughts
-    //Array of _id values referencing the Thought model
-
-//friends
-    //Array of _id values referencing the User model (self-reference)
+  
+  const User = mongoose.model('User', UserSchema);
+  
+  module.exports = User;
