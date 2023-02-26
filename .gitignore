@@ -1,0 +1,10 @@
+# ignore ALL files in ANY directory named node_modules
+node_modules/
+
+# ignore ALL files in ANY directory named package-lock.json
+package_lock.json/
+
+# ignore ALL files in ANY directory named package.json
+package.json/
+
+
