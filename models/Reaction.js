@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const { Schema, Types } = require('mongoose');
 
 const reactionSchema = new mongoose.Schema({
   reactionId: {
@@ -30,5 +31,6 @@ const reactionSchema = new mongoose.Schema({
 const dateFormat = timestamp => {
   return new Date(timestamp).toLocaleString();
 };
+//const Reaction = mongoose.model('Reaction', reactionSchema);
 
 module.exports = reactionSchema;
