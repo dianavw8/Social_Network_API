@@ -47,10 +47,16 @@ module.exports = {
   // Delete a thought by ID
   deleteThoughtById(req, res) {
     Thought.findOneAndDelete({ _id: req.params.thoughtId })
-      .then((thought) =>
-        !thought
-          ? res.status(404).json({ message: 'No thought with that ID' })
-          : Reactions.deleteMany({ _id: { $in: thought.reactions } })
+      .then((thought) => {
+        if(!thought){
+          res.status(404).json({ message: 'No thought with that ID' });
+        }
+        else{
+          if(thought.reactions.length > 0){
+            Reactions.deleteMany({ _id: { $in: thought.reactions } });
+          }
+        }
+      }
       )
       .then(() => res.json({ message: 'Thought and reactions deleted!' }))
       .catch((err) => res.status(500).json(err));
