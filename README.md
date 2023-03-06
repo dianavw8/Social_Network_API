@@ -33,10 +33,21 @@ For more help and information achiving this, check out the following website: ht
 ## Usage
 The walkthrough videos can be accessed using the following links: 
 
+Get routes for all users & thoughts, single user & single thought
+https://drive.google.com/file/d/1_XEwLSB5bMaug-lTg3swNl194yBEh82s/view
+
+Post, Put & Delete routes for Users & Thoughts
+https://drive.google.com/file/d/17n0EENx5bnjs_c8t4ZkXSFvZ6grtwyp7/view
+
+Post & Delete routes for user friend and reactions
+https://drive.google.com/file/d/19tOhMIIf-V2mehFMgI9vHTJtaz5P2OfQ/view
+
+BONUS deletes a user's associated thoughts when the user is deleted
+https://drive.google.com/file/d/11Q68bpPnrbnhI5qIHl8SXAdOxH9tVefU/view
 
 
 The following image demonstrates the application's appearance and functionality:
-![The Social Network API image shows usage of Get, Post, Put and Delete using Insomnia.](./assets/E-commerce_Back_End_%20screenshot.jpg)
+![The Social Network API image shows User with all user info., thoughts, friends, etc. in Insomnia.](./assets/Social.jpg)
 
 ## License
 
